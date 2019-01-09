@@ -37,9 +37,30 @@ size_t ssssize;
 
 那么在加上typename之后就可以确定了是那种类型了，嵌套类型。
 
+### 使用说明
+
+```
+class MyArray 
+{ 
+public：
+typedef int LengthType;
+.....
+}
+
+template<class T>
+void MyMethod( T myarr ) 
+{ 
+typedef typename T::LengthType LengthType; 
+LengthType length = myarr.GetLength; 
+}
+```
+**这个时候typename的作用就是告诉c++编译器，typename后面的字符串为一个类型名称，而不是成员函数或者成员变量。
+这个时候如果前面没有typename，编译器没有任何办法知道T::LengthType是一个类型还是一个成员名称(静态数据成员或者静态函数)，
+所以编译不能够通过。 
+
 
 ### 总结
 
-**typedef创建了存在类型的别名，而typename告诉编译器std::vector<T>::size_type是一个类型而不是一个成员。**
+**typedef创建了存在类型的别名，而typename告诉编译` std::vector<T>::size_type`是一个类型而不是一个成员。
 
 
