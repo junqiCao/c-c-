@@ -55,20 +55,24 @@ LengthType length = myarr.GetLength;
 }
 ```
 
-**这个时候typename的作用就是告诉c++编译器，typename后面的字符串为一个类型名称，而不是成员函数或者成员变量。这个时候如果前面没有typename，编译器没有任何办法知道T::LengthType是一个类型还是一个成员名称(静态数据成员或者静态函数)，所以编译不能够通过。**
+**这个时候typename的作用就是告诉c++编译器，typename后面的字符串为一个类型名称，而不是成员函数或者成员变量。这个时候如果前面没有typename，编译器没有任何办法知道T::LengthType是一个类型还是一个成员名称(静态数据成员或者静态函数)，所以编译不能够通过。typedef创建了存在类型的别名，而typename告诉编译` std::vector<T>::size_type`是一个类型而不是一个成员。**
 
 
-***typedef创建了存在类型的别名，而typename告诉编译` std::vector<T>::size_type`是一个类型而不是一个成员。 ***
+
 
 ### typename 和 class 的区别
  
  - 在模板定义中，typename和class没有区别
- - typename的另一个作用是使用嵌套依赖类型
+ - typename的另一个作用是嵌套从属名称声明，其他的类型声明是不能用的
+ 
+ ### 补充说明
+ 
+ traits 可以用来提供类型信息
 
 ### typename的作用
 
-- 用在模板定义中，typename是用于表明其后的模板参数是类型参数
-- 用于模板中表明，“内嵌依赖类型名”
+- 声明类型，typename是用于表明其后的模板参数是类型参数
+- 内嵌从属声明
 
 
 
